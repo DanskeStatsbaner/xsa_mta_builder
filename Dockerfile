@@ -51,7 +51,8 @@ RUN set -x  && \
     #
     # Provide SAP registry
     #
-    npm config set @sap:registry https://npm.sap.com --global && \
+    # npm config set @sap:registry https://npm.sap.com --global && \
+    npm config set @sap:registry https://registry.npmjs.org --global && \
     #
     # Install maven
     #
