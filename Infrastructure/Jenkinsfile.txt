@@ -11,18 +11,18 @@ pipeline {
         disableConcurrentBuilds()
     }
     environment {
-        projectName  = "xsa_cli_deploy"
+        projectName  = "xsa_mta_builder"
         deployTo = "sit"
         version = "1.0.0.${env.BUILD_NUMBER}"
         suffix = "${env.GIT_COMMIT}-${env.GIT_BRANCH.replace('/', '-')}"
         packageVersion = "${version}-${suffix}"
-        jobName = "XSA_CLI_DEPLOY"
+        jobName = "XSA_MTA_BUILDER"
         artifactoryServerId = "artifactory"   
     }
     stages {
         stage ("Build docker") {
             steps {
-                sh "docker build -f XSA_DEPLOY_DOCKER/Dockerfile -t ${artifactoryDocker}/${projectName}:${packageVersion} --build-arg XSZIP=XSA_DEPLOY_DOCKER/XS_CLIENT00P_121-70001320.ZIP --build-arg HDBCLIZIP=XSA_DEPLOY_DOCKER/SAP_HANA_CLIENT.zip ."
+                sh "docker build -f XSA_MTA_BUILDER_DOCKER/Dockerfile -t ${artifactoryDocker}/${projectName}:${packageVersion} ."
                 sh "docker tag ${artifactoryDocker}/${projectName}:${packageVersion} ${artifactoryDocker}/${projectName}:latest"
                 rtDockerPush(
                     serverId: "${artifactoryServerId}",
