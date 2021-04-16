@@ -83,10 +83,11 @@ RUN set -x  && \
             --shell /bin/bash \
             --user-group \
             --uid 1000 \
-            --comment 'SAP-MTA tooling' \
-            --password "$(echo weUseMta |openssl passwd -1 -stdin)" mta && \
+            --comment 'SAP-MTA tooling' && \
+            # --password "$(echo weUseMta |openssl passwd -1 -stdin)" mta && \
     # allow anybody to write into the images HOME
-    chmod a+w "${MTA_USER_HOME}"
+    chmod --recursive 777 "${MTA_USER_HOME}"
+    # chmod a+w "${MTA_USER_HOME}"
 
 WORKDIR /project
 
