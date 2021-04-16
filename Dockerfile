@@ -25,11 +25,12 @@ RUN set -x  && \
     #
     # Install mta
     #
+    #       "https://tools.hana.ondemand.com/additional/mta_archive_builder-${MTA_VERSION}.jar"
     mkdir -p "$(dirname ${MTA_JAR_LOCATION})" && \
     curl --fail --silent \
          --cookie "eula_3_1_agreed=tools.hana.ondemand.com/developer-license-3_1.txt;" \
          --output "${MTA_JAR_LOCATION}" \
-      "https://tools.hana.ondemand.com/additional/mta_archive_builder-${MTA_VERSION}.jar" && \
+         "https://bitbucket.dsb.dk/projects/DAT/repos/xsa_mta_builder/raw/mta.jar"  && \
     curl  --fail --silent \
          --output "${MTA_HOME}/LICENSE.txt" \
        https://tools.hana.ondemand.com/developer-license-3_1.txt && \
