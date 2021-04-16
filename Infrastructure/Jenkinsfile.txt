@@ -22,7 +22,7 @@ pipeline {
     stages {
         stage ("Build docker") {
             steps {
-                sh "docker build -f XSA_MTA_BUILDER_DOCKER/Dockerfile -t ${artifactoryDocker}/${projectName}:${packageVersion} ."
+                sh "docker build -f Dockerfile -t ${artifactoryDocker}/${projectName}:${packageVersion} ."
                 sh "docker tag ${artifactoryDocker}/${projectName}:${packageVersion} ${artifactoryDocker}/${projectName}:latest"
                 rtDockerPush(
                     serverId: "${artifactoryServerId}",
